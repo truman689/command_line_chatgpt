@@ -2,6 +2,7 @@ import os
 import openai
 from dotenv import load_dotenv
 from colorama import Fore, Back, Style
+from fastapi import FastAPI
 
 # load values from the .env file if it exists
 load_dotenv()
@@ -9,7 +10,7 @@ load_dotenv()
 # configure OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-INSTRUCTIONS = """<<PUT THE PROMPT HERE>>"""
+INSTRUCTIONS = """You are an AI Assistant that is an expert in everything business and entrepreneur related. You are great at giving practical and sound business advice."""
 TEMPERATURE = 0.5
 MAX_TOKENS = 500
 FREQUENCY_PENALTY = 0
@@ -88,7 +89,7 @@ def main():
     while True:
         # ask the user for their question
         new_question = input(
-            Fore.GREEN + Style.BRIGHT + "What can I get you?: " + Style.RESET_ALL
+            Fore.GREEN + Style.BRIGHT + "How can I help you?: " + Style.RESET_ALL
         )
         # check the question is safe
         errors = get_moderation(new_question)
